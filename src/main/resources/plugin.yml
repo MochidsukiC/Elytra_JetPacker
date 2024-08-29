@@ -1,0 +1,19 @@
+name: Elytra_JetPacker
+version: '${project.version}'
+main: jp.houlab.mochidsuki.elytra_jetpacker.Main
+api-version: '1.20'
+
+commands:
+  jumppad:
+    aliases: [jp]
+    description: ジャンパ
+    permission: elytra_jetpacker.command.jumppad
+    permission-message: Permission denied
+    usage: jumppad [int] [int]
+
+  elytrajetpacker:
+    aliases: [ejp]
+    description: ジャンパ
+    permission: elytra_jetpacker.command.elytrajetpacker
+    permission-message: Permission denied
+    usage: elytrajetpacker [reload]
