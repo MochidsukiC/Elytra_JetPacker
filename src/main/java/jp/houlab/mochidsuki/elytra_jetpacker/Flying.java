@@ -2,6 +2,7 @@ package jp.houlab.mochidsuki.elytra_jetpacker;
 
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -26,6 +27,8 @@ public class Flying extends BukkitRunnable {
                 player.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, loc, 50, 0.2, 0.2, 0.2, 0);
                 player.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, loc, 50, 0.2, 0.2, 0.2, 0);
                 player.getWorld().spawnParticle(Particle.SMOKE_NORMAL, loc, 50, 0.2, 0.2, 0.2, 0);
+
+                player.getWorld().playSound(player.getEyeLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 0.5f, 0);
 
                 if (player.getLocation().getPitch() > 0) {
                     player.setVelocity(player.getLocation().getDirection().normalize().multiply(config.getDouble("elytra_x_vector")));

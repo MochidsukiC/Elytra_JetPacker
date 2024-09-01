@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import static jp.houlab.mochidsuki.elytra_jetpacker.Main.plugin;
+
 public class CommandListener implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
@@ -31,6 +33,13 @@ public class CommandListener implements CommandExecutor {
         if(s.equalsIgnoreCase("elytrajetpacker")){
             if(strings[0].equalsIgnoreCase("reload")){
                 JumpPad.JumpPadLocation.clear();
+            }
+            if(strings[0].equalsIgnoreCase("openjet")){
+                for(Player player : plugin.getServer().getOnlinePlayers()){
+                    player.setGliding(true);
+                    player.addScoreboardTag("JetPack");
+                    new RemoveTag(player).runTaskTimer(plugin,0L,1L);
+                }
             }
         }
         return false;

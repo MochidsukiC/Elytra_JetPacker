@@ -3,6 +3,7 @@ package jp.houlab.mochidsuki.elytra_jetpacker;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -18,10 +19,12 @@ public class JumpPad extends BukkitRunnable {
     public void run() {
         for(Location loc : JumpPadLocation.keySet()) {
             for(Player player : loc.getWorld().getPlayers()) {
-                if(player.getLocation().distance(loc) <= 3) {
+                int x = player.getLocation().getBlockX();
+                int z = player.getLocation().getBlockZ();
+                if(player.getLocation().distance(loc) <= 3 && x == loc.getBlockX() && z == loc.getBlockZ()) {
                     player.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION,JumpPadLocation.get(loc)[0]*20, JumpPadLocation.get(loc)[1],true,false,false));
                     player.addScoreboardTag("JetPack");
-                    new RemoveTag(player).runTaskTimer(plugin,1,1);
+                    new RemoveTag(player).runTaskTimer(plugin,20L,1);
                     new JumpEffect(JumpPadLocation.get(loc)[0]*20,player).runTaskTimer(plugin,1,1);
                 }
             }
@@ -43,6 +46,10 @@ class JumpEffect extends BukkitRunnable {
         player.getWorld().spawnParticle(Particle.SOUL_FIRE_FLAME, player.getLocation(), 50, 0.2, 0.2, 0.2, 0);
         player.getWorld().spawnParticle(Particle.SMOKE_NORMAL, player.getLocation(), 50, 0.2, 0.2, 0.2, 0);
 
+        if(time%3 == 0){
+            player.getWorld().playSound(player.getEyeLocation(), Sound.ENTITY_GHAST_SHOOT, 0.5f, 0);
+        }
+
         time--;
         if(time <= 0) {
             cancel();
@@ -50,16 +57,3 @@ class JumpEffect extends BukkitRunnable {
     }
 }
 
-class RemoveTag extends BukkitRunnable {
-    private Player player;
-    public RemoveTag(Player player) {
-        this.player = player;
-    }
-    @Override
-    public void run() {
-        if(!player.getLocation().clone().add(0,-0.2,0).getBlock().getType().equals(Material.AIR)) {
-            player.removeScoreboardTag("JetPack");
-            cancel();
-        }
-    }
-}
