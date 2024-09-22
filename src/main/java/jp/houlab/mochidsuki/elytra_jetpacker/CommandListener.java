@@ -11,6 +11,10 @@ import org.jetbrains.annotations.NotNull;
 
 import static jp.houlab.mochidsuki.elytra_jetpacker.Main.plugin;
 
+/**
+ * コマンドリスナー
+ * @author Mochidsuki
+ */
 public class CommandListener implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {

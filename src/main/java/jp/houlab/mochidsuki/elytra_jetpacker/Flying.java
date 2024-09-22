@@ -12,7 +12,14 @@ import org.bukkit.util.Vector;
 import static jp.houlab.mochidsuki.elytra_jetpacker.Main.config;
 import static jp.houlab.mochidsuki.elytra_jetpacker.Main.plugin;
 
+/**
+ * プレイヤーをジェットパックにて降下させるエフェクト、物理演算を司るクラス。
+ * @author Mochidsuki
+ */
 public class Flying extends BukkitRunnable {
+    /**
+     * 実行
+     */
     @Override
     public void run() {
         for (Player player : plugin.getServer().getOnlinePlayers()){
