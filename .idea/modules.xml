@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Elytra_JetPacker.iml" filepath="$PROJECT_DIR$/Elytra_JetPacker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/elytra_jetpacker.iml" filepath="$PROJECT_DIR$/elytra_jetpacker.iml" />
     </modules>
   </component>
 </project>
